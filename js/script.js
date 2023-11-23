@@ -191,7 +191,7 @@ formSignUp.addEventListener('submit', function (event) {
 
             // Écrire les données dans le fichier JSON
             return fetch('json/utilisateurs.json', {
-                method: 'PUT',
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
