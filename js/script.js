@@ -127,8 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault(); // Empêcher le formulaire de se soumettre normalement
 
         // Récupérer les valeurs des champs
-        var prenom = document.getElementById('prenom').value;
-        var nom = document.getElementById('nom').value;
+        var prenom = document.getElementById('prenom_signin').value;
+        var nom = document.getElementById('nom_signin').value;
         var mdp = document.getElementById('password1_signin').value;
         var statut = document.querySelector('input[name="statut"]:checked').value;
 
@@ -166,9 +166,9 @@ formSignUp.addEventListener('submit', function (event) {
     event.preventDefault(); // Empêcher le formulaire de se soumettre normalement
 
     // Récupérer les valeurs des champs
-    var prenom = document.getElementById('prenom').value;
-    var nom = document.getElementById('nom').value;
-    var mdp = document.getElementById('password1').value;
+    var prenom = document.getElementById('prenom_signup').value;
+    var nom = document.getElementById('nom_signup').value;
+    var mdp = document.getElementById('password1_signup').value;
     var statut = document.querySelector('input[name="statut"]:checked').value;
 
     // Charger le fichier JSON
