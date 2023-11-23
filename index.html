@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="", initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="css/style.css" rel="stylesheet">
     <title>Login</title>
@@ -12,33 +12,117 @@
     <div class="form-container sign-up">
         <form>
             <h1>Create Account</h1>
-            <div class="social-icons">
-                <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
-                <a href="#" class="icon"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="icon"><i class="fa-brands fa-linkedin"></i></a>
+            <!-- <div class="formCenterBlock"> -->
+            <div class="formBlockTypeRadio">
+                <div class=" formBlockLabel">
+                    <i class="fa-regular fa-user"></i>
+                    <p>COMPTE</p>
+                </div>
+                <div class="formBlockInputsBlock">
+                    <div>
+                        <input type="radio" name="statut" value="Etudiant" id="etudiant_signup" class="formInputCellInput" />
+                        <label for="etudiant_signup"><i class="fa-solid fa-graduation-cap"></i>Etudiant</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="statut" value="Professeur" id="prof_signup" class="formInputCellInput" />
+                        <label for="prof_signup"><i class="fa-solid fa-chalkboard-user"></i>Professeur</label>
+                    </div>
+                </div>
             </div>
-            <span>or use your email for registration</span>
-            <input type="text" placeholder="name">
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <button>Sign Up</button>
+            <!-- </div> -->
+            <div class="formBlockTypeMail">
+                <div class="formBlockLabel">
+                    <i class="fa-regular fa-envelope"></i>
+                    <label>Adresse mail URCA</label>
+                </div>
+
+                <div class="formBlockInputsBlock">
+                    <input type="text" placeholder="prénom" name="prenom" id="prenom" />
+                    <p>.</p>
+                    <input type="text" placeholder="nom" name="nom" id="nom" />
+                    <div>
+                        <p id="afficheEtudiant_signup">@etudiant.univ-reims.fr</p>
+                        <p id="afficheProf_signup" style="opacity: 0">@univ-reims.fr</p>
+                    </div>
+                </div>
+            </div>
+            <div class="formBlockTypeText">
+                <div class="formBlockLabel">
+                    <i class="fa-solid fa-lock"></i>
+                    <label for="mdp">Mot de passe</label>
+                </div>
+                <div class="formBlockInputsBlock">
+                    <input type="password" id="password1_signup" name="mdp" />
+                    <div class="afficherMDP">
+                        <input type="checkbox" id="revealPassword_signup" onclick="togglePasswordVisibilitySignup()">
+                        <label for="revealPassword_signup">
+                            <i class="fa-regular fa-eye"></i>
+                            <i class="fa-regular fa-eye-slash"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button>JE M'INSCRIS</button>
         </form>
     </div>
+
     <div class="form-container sign-in">
-        <form action="php/submit.php" method="post">
-            <h1>Sign In</h1>
-            <div class="social-icons">
-                <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
-                <a href="#" class="icon"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="icon"><i class="fa-brands fa-linkedin"></i></a>
+        <form method="post" class="">
+            <h1>SE CONNECTER</h1>
+
+            <!-- <div class="formCenterBlock"> -->
+            <div class="formBlockTypeRadio">
+                <div class=" formBlockLabel">
+                    <i class="fa-regular fa-user"></i>
+                    <p>COMPTE</p>
+                </div>
+                <div class="formBlockInputsBlock">
+                    <div>
+                        <input type="radio" name="statut" value="Etudiant" id="etudiant_signin" class="formInputCellInput" />
+                        <label for="etudiant_signin"><i class="fa-solid fa-graduation-cap"></i>Etudiant</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="statut" value="Professeur" id="prof_signin" class="formInputCellInput" />
+                        <label for="prof_signin"><i class="fa-solid fa-chalkboard-user"></i>Professeur</label>
+                    </div>
+                </div>
             </div>
-            <span>or use your email password</span>
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Password">
-            <a href="#">Forget Your Password?</a>
-            <button>Sign In</button>
+            <!-- </div> -->
+            <div class="formBlockTypeMail">
+                <div class="formBlockLabel">
+                    <i class="fa-regular fa-envelope"></i>
+                    <label>Adresse mail URCA</label>
+                </div>
+
+                <div class="formBlockInputsBlock">
+                    <input type="text" placeholder="prénom" name="prenom" id="prenom" />
+                    <p>.</p>
+                    <input type="text" placeholder="nom" name="nom" id="nom" />
+                    <div>
+                        <p id="afficheEtudiant_signin">@etudiant.univ-reims.fr</p>
+                        <p id="afficheProf_signin" style="opacity: 0">@univ-reims.fr</p>
+                    </div>
+                </div>
+            </div>
+            <div class="formBlockTypeText">
+                <div class="formBlockLabel">
+                    <i class="fa-solid fa-lock"></i>
+                    <label for="password1_signin">Mot de passe</label>
+                </div>
+                <div class="formBlockInputsBlock">
+                    <input type="text" id="password1_signin" name="mdp" />
+                    <div class="afficherMDP">
+                        <input type="checkbox" id="revealPassword_signin" onclick="togglePasswordVisibilitySignin()">
+                        <label for="revealPassword_signin">
+                            <i class="fa-regular fa-eye"></i>
+                            <i class="fa-regular fa-eye-slash"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="formCenterBlock">
+                <button type="submit" value="Envoyer" class="btn"><i class="fa-solid fa-arrow-right-to-bracket"></i>SE CONNECTER</button>
+            </div>
         </form>
     </div>
     <div class="toggle-container">
@@ -46,12 +130,12 @@
             <div class="toggle-panel toggle-left">
                 <h1>Welcome Back!</h1>
                 <p>Enter your personal details to use all of site features</p>
-                <button class="hidden" id="login">Sign In</button>
+                <button class="hidden" id="login">SE CONNECTER</button>
             </div>
             <div class="toggle-panel toggle-right">
                 <h1>Hello, Friend!</h1>
                 <p>Register with your personal details to use all of site features</p>
-                <button class="hidden" id="register">Sign Up</button>
+                <button class="hidden" id="register">JE M'INSCRIS</button>
             </div>
         </div>
     </div>
