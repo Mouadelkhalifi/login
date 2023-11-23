@@ -142,6 +142,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     return utilisateur.prenom.toLowerCase() === prenom.toLowerCase() && utilisateur.nom.toLowerCase() === nom.toLowerCase() && utilisateur.mdp === mdp && utilisateur.statut === statut;
                 });
 
+                // Si l'utilisateur n'est pas trouvé dans le fichier JSON, vérifier le localStorage
+                if (!utilisateurTrouve) {
+                    var utilisateursLocalStorage = JSON.parse(localStorage.getItem('utilisateurs'));
+
+                    if (utilisateursLocalStorage) {
+                        utilisateurTrouve = utilisateursLocalStorage.find(function (utilisateur) {
+                            return utilisateur.prenom.toLowerCase() === prenom.toLowerCase() && utilisateur.nom.toLowerCase() === nom.toLowerCase() && utilisateur.mdp === mdp && utilisateur.statut === statut;
+                        });
+                    }
+                }
+
 
                 // Rediriger en fonction du résultat
                 if (utilisateurTrouve) {
@@ -159,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //-------------------INSCRIPTION-------------------//
 
+// Récupérer le formulaire
 var formSignUp = document.querySelector('.form-container.sign-up form');
 
 // Ajouter un écouteur d'événements pour le formulaire d'inscription
@@ -171,39 +183,23 @@ formSignUp.addEventListener('submit', function (event) {
     var mdp = document.getElementById('password1_signup').value;
     var statut = document.querySelector('input[name="statut"]:checked').value;
 
-    // Charger le fichier JSON
-    fetch('json/utilisateurs.json')
-        .then(response => response.json())
-        .then(data => {
-            // Ajouter un nouvel utilisateur
-            var nouvelUtilisateur = {
-                prenom: prenom,
-                nom: nom,
-                mdp: mdp,
-                statut: statut,
-            };
+    // Récupérer les utilisateurs du localStorage
+    var utilisateurs = JSON.parse(localStorage.getItem('utilisateurs')) || [];
 
-            // Ajouter le nouvel utilisateur à la liste des utilisateurs
-            data.utilisateurs.push(nouvelUtilisateur);
+    // Ajouter un nouvel utilisateur
+    var nouvelUtilisateur = {
+        prenom: prenom,
+        nom: nom,
+        mdp: mdp,
+        statut: statut,
+    };
 
-            // Convertir les données mises à jour en JSON
-            var jsonData = JSON.stringify(data);
+    // Ajouter le nouvel utilisateur à la liste des utilisateurs
+    utilisateurs.push(nouvelUtilisateur);
 
-            // Écrire les données dans le fichier JSON
-            return fetch('json/utilisateurs.json', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: jsonData
-            });
-        })
-        .then(response => response.json())
-        .then(() => {
-            // Rediriger vers la page d'inscription réussie
-            window.location.href = 'inscription_valid.html';
-        })
-        .catch(error => {
-            console.error('Erreur lors de l\'inscription', error);
-        });
+    // Mettre à jour le localStorage avec la liste mise à jour des utilisateurs
+    localStorage.setItem('utilisateurs', JSON.stringify(utilisateurs));
+
+    // Rediriger vers la page d'inscription réussie
+    window.location.href = 'home.html';
 });
